@@ -10,9 +10,7 @@
 //! - assertions
 //! - panic handling
 
-// build without the Rust standard library
 #![no_std]
-// no standard main, we declare main using [entry]
 #![no_main]
 
 // Panic handler, for textual output using semihosting
@@ -29,27 +27,18 @@ const X_INIT: u32 = 10;
 static mut X: u32 = X_INIT;
 static mut Y: u32 = 0;
 
-
-fn read_u32(int: &mut u32) -> u32 {
-    let x: u32 = unsafe {*int};
-    x
-}
-
 #[entry]
 fn main() -> ! {
     // local mutable variable (changed in safe code)
     let mut x = unsafe { X };
 
-/*     loop {
+    loop {
         x += 1; // <- place breakpoint here (3)
         unsafe {
             X += 1;
             Y = X;
             assert!(x == X && X == Y);
         }
-    } */
-    loop {
-        read_u32(unsafe{&mut X});
     }
 }
 
@@ -66,7 +55,6 @@ fn main() -> ! {
 //    Look under Variables/Local what do you find.
 //
 //    ** your answer here **
-//    local: x = 11, static thingys
 //
 //    In the Expressions (WATCH -vscode) view add X and Y
 //    what do you find
