@@ -24,9 +24,9 @@ fn main() -> ! {
         cortex_m::asm::bkpt();
 
         // prevent optimization by read-volatile (unsafe)
-        unsafe {
-            core::ptr::read_volatile(&x);
-        }
+        // unsafe {
+        //     core::ptr::read_volatile(&x);
+        // }
     }
 }
 
@@ -157,15 +157,19 @@ fn main() -> ! {
 //    > disassemble
 //
 //    ** your answer here **
+//    can't copy anything from my terminal but only 2 breakpoints      
 //
 //    How many instructions are in between the two `bkpt` instructions.
 //
 //    ** your answer here **
+//    0
 //
 //    Where is the local variable stored?
 //    What happened, and why is Rust + LLVM allowed to do that?
 //
 //    ** your answer here **
+//    It is not stored anywhere. It is gone.
+//    Since release mode uses higher optimization levels than debug, unnecessary instructions will be optimized out.    
 //
 //    commit your answers (bare1_4)
 //
