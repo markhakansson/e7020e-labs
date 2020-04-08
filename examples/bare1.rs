@@ -59,10 +59,12 @@ fn main() -> ! {
 //    (passing 3 breakpoints)
 //
 //    ** your answer here **
+//    local x is incremented by 1 and we get an integer overflow (panics)
 //
 //    What is the `ITM` output.
 //
 //    ** your answer here **
+//    panicked attempt to add with overflow
 //
 //    Commit your answer (bare1_1)
 //
@@ -75,15 +77,18 @@ fn main() -> ! {
 //    > disassemble
 //
 //    ** your answer here **
+//    assembler code for the function bare1::main  
 //
 //    How many instructions are in between the two `bkpt` instructions in the loop.
 //    Notice, the generated code may not be exactly what you expect :)
 //
 //    ** your answer here **
+//    10 instructions      
 //
 //    Which instruction stores the local variable on the stack.
 //
 //    ** your answer here **
+//    push
 //
 //    Commit your answers (bare1_2)
 //
