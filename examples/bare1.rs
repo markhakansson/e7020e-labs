@@ -105,19 +105,23 @@ fn main() -> ! {
 //    > disassemble
 //
 //    ** your answer here **
+//    can't copy from my terminal but it is one str instruction      
 //
 //    How many instructions are in between the two `bkpt` instructions.
 //
 //    ** your answer here **
+//    1 instruction       
 //
 //    Where is the local variable stored?
 //
 //    ** your answer here **
+//    on the stack I presume. since the str instruction uses the sp (stack pointer) it should store the value on the stack
 //
 //    Is there now any reference to the panic handler?
 //    If not, why is that the case?
 //
 //    ** your answer here **
+//    No, because the integers does not overflow in release mode. They just wrap around instead.      
 //
 //    commit your answers (bare1_3)
 //
