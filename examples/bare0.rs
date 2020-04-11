@@ -27,19 +27,42 @@ const X_INIT: u32 = core::u32::MAX;
 static mut X: u32 = X_INIT;
 static mut Y: u32 = 0;
 
+fn read_x() -> u32 {
+    unsafe {X}
+}
+
+fn read_y() -> u32 {
+    unsafe {Y}
+}
+
+fn write_x(x: u32) {
+    unsafe {
+        X = x;
+    }
+}
+
+fn write_y(y: u32) {
+    unsafe {
+        Y = y;
+    }
+}
+
 #[entry]
 fn main() -> ! {
     // local mutable variable (changed in safe code)
-    let mut x = unsafe { X };
+    let mut x = read_x();
 
     loop {
         x = x.wrapping_add(1); // <- place breakpoint here (3)
-        unsafe {
-            X = X.wrapping_add(1);
-            Y = X;
-            //assert!(x == X && X == Y);
-            assert!(x == X && X == Y + 1)
-        }
+        
+        write_x(x);
+        write_y(x);
+        // unsafe {
+        //     X = X.wrapping_add(1);
+        //     Y = X;
+        //     //assert!(x == X && X == Y);
+        //     //assert!(x == X && X == Y + 1)
+        // }
     }
 }
 
