@@ -20,8 +20,8 @@ use panic_semihosting as _;
 use cortex_m_rt::entry;
 
 // a constant (cannot be changed at run-time)
-const X_INIT: u32 = 10;
-// const X_INIT: u32 = core::u32::MAX;
+//const X_INIT: u32 = 10;
+const X_INIT: u32 = core::u32::MAX;
 
 // global mutable variables (changed using unsafe code)
 static mut X: u32 = X_INIT;
@@ -68,8 +68,8 @@ fn main() -> ! {
 //    can you foresee what will eventually happen?
 //
 // 	  ** place your answer here **
-//    x will increment by 1 for each loop. Eventually the program will crash because 
-//    X and Y will overflow.      
+//    x will increment by 1 for each loop. X and Y will become 'full'. And should panic
+//    in debug mode because of overflowing. 
 //
 //    Commit your answers (bare0_1)
 //
@@ -78,6 +78,7 @@ fn main() -> ! {
 //    (Hint, look under OUTPUT/Adopter Output to see the `openocd` output.)
 //
 //    ** your answer here **
+//    It panics. Attempt to add with overflow.
 //
 //    Commit your answers (bare0_2)
 //
