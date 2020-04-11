@@ -36,8 +36,8 @@ fn main() -> ! {
 
     hprintln!("").unwrap();
 
-    let a: [u8; 4] = [65u8; 4];
-    // let mut a = [0u8; 4];
+    //let a: [u8; 4] = [65u8; 4];
+    let mut a = [0u8; 4];
 
     hprintln!("").unwrap();
     hprintln!("a = {}", core::str::from_utf8(&a).unwrap()).unwrap();
@@ -102,6 +102,7 @@ fn main() -> ! {
 //    Run the program, what happens and why?
 //
 //    ** your answer here **
+//    Output of a is 'a = ' i.e. empty. from_utf8 converts a byte to UTF-8 character where 0 is NULL.     
 //
 //    Commit your answers (bare3_3)
 //
