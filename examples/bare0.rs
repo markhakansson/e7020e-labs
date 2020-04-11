@@ -33,9 +33,9 @@ fn main() -> ! {
     let mut x = unsafe { X };
 
     loop {
-        x += 1; // <- place breakpoint here (3)
+        x = x.wrapping_add(1); // <- place breakpoint here (3)
         unsafe {
-            X += 1;
+            X = X.wrapping_add(1);
             Y = X;
             assert!(x == X && X == Y);
         }
@@ -87,9 +87,11 @@ fn main() -> ! {
 //    Change (both) += operations to use wrapping_add
 //    load and run the program, what happens
 //    ** your answer here **
+//    It wraps around to 0,
 //
 //    Now continue execution, what happens
 //    ** your answer here **
+//    It continues incrementing starting from 0  
 //
 //    Commit your answers (bare0_3)
 //
