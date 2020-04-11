@@ -55,17 +55,21 @@ fn main() -> ! {
 //    Look under Variables/Local what do you find.
 //
 //    ** your answer here **
+//    LOCALS: x = 1848465  
 //
 //    In the Expressions (WATCH -vscode) view add X and Y
 //    what do you find
 //
 //    ** your answer here **
+//    I run gdb through the terminal and I can see X and Y but not their values    
 //
 //    Step through one complete iteration of the loop
 //    and see how the (Local) Variables are updated
 //    can you foresee what will eventually happen?
 //
 // 	  ** place your answer here **
+//    x will increment by 1 for each loop. Eventually the program will crash because 
+//    X and Y will overflow.      
 //
 //    Commit your answers (bare0_1)
 //
