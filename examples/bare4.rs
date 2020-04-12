@@ -55,10 +55,12 @@ fn wait(i: u32) {
 
 #[entry]
 fn main() -> ! {
+    // RCC_AHB1ENR peripheral clock enable register (6.3.11)
     // power on GPIOA
     let r = read_u32(RCC_AHB1ENR); // read
     write_u32(RCC_AHB1ENR, r | 1); // set enable
 
+    // GPIOA_MODER GPIOA port mode register (8.4.1)
     // configure PA5 as output
     let r = read_u32(GPIOA_MODER) & !(0b11 << (5 * 2)); // read and mask
     write_u32(GPIOA_MODER, r | 0b01 << (5 * 2)); // set output mode
@@ -67,6 +69,8 @@ fn main() -> ! {
     // this is more efficient as the read register is not needed.
 
     loop {
+        // GPIOA_BSSR GPIO port bit set/reset register (8.4.7)
+
         // set PA5 high
         write_u32(GPIOA_BSRR, 1 << 5); // set bit, output hight (turn on led)
         wait(10_000);
@@ -85,6 +89,7 @@ fn main() -> ! {
 // 1.  Did you enjoy the blinking?
 //
 //    ** your answer here **
+//    Somewhat.  
 //
 //    Now lookup the data-sheets, and read each section referred,
 //    6.3.11, 8.4.1, 8.4.7
