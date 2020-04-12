@@ -36,8 +36,8 @@ use address::*;
 
 #[inline(always)]
 fn read_u32(addr: u32) -> u32 {
-    //unsafe { core::ptr::read_volatile(addr as *const _) }
-    core::ptr::read_volatile(addr as *const _)
+    unsafe { core::ptr::read_volatile(addr as *const _) }
+    //core::ptr::read_volatile(addr as *const _)
 }
 
 #[inline(always)]
@@ -128,15 +128,25 @@ fn main() -> ! {
 //    Why is it important that ordering of volatile operations are ensured by the compiler?
 //
 //    ** your answer here **
+//    You don't want to do a volatile read while some operation is writing to that adress and
+//    you don't want to do writes or reads out of order.
 //
 //    Give an example in the above code, where reordering might make things go horribly wrong
 //    (hint, accessing a peripheral not being powered...)
 //
 //    ** your answer here **
+//    '''
+//    let r = read_u32(GPIOA_MODER) & !(0b11 << (5 * 2)); // read and mask
+//    write_u32(GPIOA_MODER, r | 0b01 << (5 * 2)); // set output mode
+//    '''    
+//
+//    When setting GPIOA_MODER if the write operation would occur before reading and masking the value 'r' it
+//    would use the previous instance of 'r' which would most likely break the peripherals.
 //
 //    Without the non-reordering property of `write_volatile/read_volatile` could that happen in theory
 //    (argue from the point of data dependencies).
 //
 //    ** your answer here **
+//    See above.
 //
 //    Commit your answers (bare4_3)
