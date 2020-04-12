@@ -38,14 +38,14 @@ optional        = true
 rtfm            = ["cortex-m-rtfm", "stm32f4xx-hal"]
 
 # this lets you use `cargo fix`!
-#[[bin]]
-#name            = "app"
-#test            = false
-#bench           = false
+[[bin]]
+name            = "e7020e-labs"
+test            = false
+bench           = false
 
 [profile.dev]
-opt-level       = 1
-codegen-units   = 16
+#opt-level       = 1
+#codegen-units   = 16
 debug           = true
 lto             = false
 
